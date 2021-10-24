@@ -10,8 +10,8 @@ So To Change the current Card/Text, change the following variables in: "FAB_CCC_
 - Cost  - Cost of card
 - Pitch - Pitch Value of Card (0, 1, 2, 3)
 
-Attack Value  - atkv
-Defence Value - defv
+- Attack Value  - atkv
+- Defence Value - defv
 
 The tricky stuff comes to how to change the card background/frame.
 Theres alot of stuff going on behind the scenes with string building and image loactions, so please dont touch the main file if u dont want to break it <3
