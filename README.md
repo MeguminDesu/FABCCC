@@ -33,6 +33,9 @@ Changing this just changes the text at the bottom, so go crazy <3
 Ex. classtype = "Ninja Action" actiontype = "Attack".  
   - Displays: "Ninja Action - Attack"  
 <br>
+Finally, The background image or hero image.  
+to change this, find the "back" variable, (should be a image location within the same file.)  
+instead of my default "megumin.jpg", just replace it with your custom image file location, (Make sure your image is within the data folder provided).  
 <br>
 Thank you for downloading and testing, any feedback would be appreciated.
 Eve <3
