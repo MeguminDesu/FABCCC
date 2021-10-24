@@ -18,24 +18,21 @@ public class Card
   private int defposy = 580;
 
   // Generic
-  public String  title  = "Lorem Ipsum.";
-  public String  text   = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+  public String  title  = "Megumin, Crimson Demon";
+  public String  text   = "Once Per Turn Action:\nDeal 40 arcane damage to all players.";
   public String  cost   = "2";
   public String  pitch  = "3";
 
-  public boolean canatk = true;
-  public boolean candef = true;
   public String  atkv   = "0";
   public String  defv   = "0";
 
   public String type       = "Hero";
-  public String region     = "Mist";
-  public String traittype  = "";
-  public String classtype  = "Ninja Hero";
-  public String actiontype = "Young";
+  public String region     = "Aria";
+  public String classtype  = "Wizard";
+  public String actiontype = "";
+  public boolean young     = true;
 
   // Hero Speicifc
-  public boolean young  = true;
   public String  health = "40";
   public String  intel  = "4";
 
@@ -58,7 +55,7 @@ public class Card
     if (this.border != null) { image(this.border, this.pos.x , this.pos.y, this.size.x, this.size.y); }
 
     // Title
-    textFont(FABCCC_Title, 32); color(0); fill(0);
+    textFont(FABCCC_Title, 32); fill(0); stroke(0);
     textAlign(CENTER, CENTER);
 
     if (this.type == "Action")
@@ -68,29 +65,35 @@ public class Card
 
     // Text
     // Bounds: 400, 550
-    textFont(FABCCC_Text, 16); color(0); fill(0);
-    textAlign(CENTER, CENTER);
+    textFont(FABCCC_Text, 16); fill(0); stroke(0);
+    textAlign(LEFT, CENTER);
     text(this.text, this.pos.x+this.textbufferx, this.pos.y+textboundstop,
                     this.size.x-(this.textbufferx*2), this.textboundsbot-this.textboundstop);
 
 
-    if (this.actiontype == "Action") {
+    if (this.type == "Action") {
       // Cost
       textFont(FABCCC_Title, 28);
       text(this.cost, this.pos.x+this.size.x-this.costoffsetx, this.pos.y + this.titleoffsety + this.costoffsety);
 
-      // Atk
-      textFont(FABCCC_Title, 32); color(0); fill(0);
+      textFont(FABCCC_Title, 32); fill(0); stroke(0);
       textAlign(CENTER, CENTER);
-      text(this.atkv, this.pos.x + this.atkposx, this.pos.y + this.atkposy);
+      // Atk
+      if (this.actiontype == "Attack")
+      {
+        text(this.atkv, this.pos.x + this.atkposx, this.pos.y + this.atkposy);
+      }
 
       // Def
-      text(this.atkv, this.pos.x + this.size.x - this.defposx, this.pos.y + this.defposy);
+      if (this.actiontype == "Attack" || this.actiontype == "NonAttack")
+      {
+        text(this.defv, this.pos.x + this.size.x - this.defposx, this.pos.y + this.defposy);
+      }
     }
 
     if (this.type == "Hero") {
       // Atk
-      textFont(FABCCC_Title, 32); color(0); fill(0);
+      textFont(FABCCC_Title, 32); fill(0); stroke(0);
       textAlign(CENTER, CENTER);
       text(this.intel, this.pos.x + this.atkposx, this.pos.y + this.atkposy);
 
@@ -98,11 +101,28 @@ public class Card
       text(this.health, this.pos.x + this.size.x - this.defposx, this.pos.y + this.defposy);
     }
 
-    textFont(FABCCC_Title, 22); color(0); fill(0);
+    textFont(FABCCC_Title, 22); fill(0); stroke(0);
     textAlign(CENTER, CENTER);
 
-    String f = this.classtype;
-    if (this.actiontype != "") f += " - " + this.actiontype;
+    String f = this.classtype + " " + this.type;
+    if (this.actiontype == "NonAttack") {}
+    else if (this.actiontype != "") f += " - " + this.actiontype;
+    else if (this.young) f += " - Young";
     text(f, this.pos.x + this.size.x/2, this.pos.y + this.typeposy);
+  }
+
+
+  public void updatevalues()
+  {
+    this.title  = inputs.get(1).display;
+    this.text   = inputs.get(2).display;
+    this.intel  = inputs.get(8).display;
+    this.atkv   = inputs.get(8).display;
+    this.health = inputs.get(9).display;
+    this.defv   = inputs.get(9).display;
+    this.cost   = inputs.get(10).display;
+
+    this.border = getImageFromValues(this);
+    return;
   }
 }

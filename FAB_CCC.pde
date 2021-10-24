@@ -1,6 +1,11 @@
 
+import drop.*;
+SDrop drop;
+
 PFont FABCCC_Title;
 PFont FABCCC_Text;
+
+PImage bgimg;
 
 int cardx, cardy;
 int cardbufferx, cardbuffery;
@@ -9,11 +14,18 @@ Input currentInput = null;
 
 Card card;
 
+ArrayList<Input> inputs = new ArrayList<Input>();
+
 public void setup()
 {
+  drop = new SDrop(this);
+
   // Load Fonts
   FABCCC_Title = createFont(".\\font\\cardtitle.otf", 32);
   FABCCC_Text  = createFont(".\\font\\cardtext.otf", 16);
+
+  // Load Background
+  bgimg = loadImage(".\\img\\misc\\background.jpg");
 
   // Setup Screen
   size(1600, 900); background(0);
@@ -30,17 +42,242 @@ public void setup()
     new PVector(cardx, cardy)
   );
 
+  // Get initial Frame
   card.border = getImageFromValues(card);
+
+
+  // Setup Inputs
+  // Export Image
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x/4, card.pos.y + card.size.y + card.pos.y/4),
+    new PVector(card.size.x / 2, card.pos.y/2),
+    "button",
+    "Export",
+    "exportimg"
+  ));
+  currentInput = inputs.get(0);
+
+  // Title
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 50, card.pos.y + 50),
+    new PVector(500, 50),
+    "textBox",
+    card.title,
+    "changetitle"
+  ));
+
+  // Text
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 50, card.pos.y + 125),
+    new PVector(500, 600),
+    "textBox",
+    card.text,
+    "changetext"
+  ));
+
+  // Hero
+  inputs.add(new Input(
+    new PVector(card.pos.x, card.pos.y - 125),
+    new PVector(card.size.x/2, 100),
+    "button",
+    "Change To Hero",
+    "changetohero"
+  ));
+
+  // Action
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x/2, card.pos.y - 125),
+    new PVector(card.size.x/2, 100),
+    "button",
+    "Change To Action",
+    "changetoaction"
+  ));
+
+  // Action Types
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x+50, card.pos.y - 125),
+    new PVector(125, 100),
+    "button",
+    "Attack",
+    "changetoattack",
+    true
+  ));
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x+50+125+62.5, card.pos.y - 125),
+    new PVector(125, 100),
+    "button",
+    "Non Attack",
+    "changetononattack",
+    true
+  ));
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x+550-125, card.pos.y - 125),
+    new PVector(125, 100),
+    "button",
+    "Instant",
+    "changetoinstant",
+    true
+  ));
+
+  // Atk/Int,Def/Health
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 50 + 550, card.pos.y + 125),
+    new PVector(125, 100),
+    "textBox",
+    "4",
+    "changeatkint"
+  ));
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 50 + 550 + 150, card.pos.y + 125),
+    new PVector(125, 100),
+    "textBox",
+    "40",
+    "changedefhealth"
+  ));
+
+  // Cost
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 50 + 550 + 300, card.pos.y + 125),
+    new PVector(125, 100),
+    "textBox",
+    "0",
+    "changeCost"
+  ));
+
+  // Pitch
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 50 + 550, card.pos.y - 125),
+    new PVector(125, 100),
+    "button",
+    "Red",
+    "changepitch1",
+    true
+  ));
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 50 + 550 + 150, card.pos.y - 125),
+    new PVector(125, 100),
+    "button",
+    "Yellow",
+    "changepitch2",
+    true
+  ));
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 50 + 550 + 300, card.pos.y - 125),
+    new PVector(125, 100),
+    "button",
+    "Blue",
+    "changepitch3",
+    true
+  ));
+
+  // Toggle Young
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 600, card.pos.y + 50),
+    new PVector(425, 50),
+    "button",
+    "Toggle Young",
+    "toggleyoung"
+  ));
+
+  // Change Class
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 600, card.pos.y +225 + 75),
+    new PVector(200, 50),
+    "button",
+    "Brute",
+    "changeto_brute"
+  ));
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 600, card.pos.y + 225 + 75*2),
+    new PVector(200, 50),
+    "button",
+    "Ninja",
+    "changeto_ninja"
+  ));
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 600, card.pos.y + 225 + 75*3),
+    new PVector(200, 50),
+    "button",
+    "Ranger",
+    "changeto_ranger"
+  ));
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 600, card.pos.y + 225 + 75*4),
+    new PVector(200, 50),
+    "button",
+    "Runeblade",
+    "changeto_runeblade"
+  ));
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 600, card.pos.y + 225 + 75*5),
+    new PVector(200, 50),
+    "button",
+    "Warrior",
+    "changeto_warrior"
+  ));
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 600, card.pos.y + 225 + 75*6),
+    new PVector(200, 50),
+    "button",
+    "Wizard",
+    "changeto_wizard"
+  ));
+
+
+  // Change Region
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 825, card.pos.y +225 + 75),
+    new PVector(200, 50),
+    "button",
+    "Aria",
+    "changeto_aria"
+  ));
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 825, card.pos.y + 225 + 75*2),
+    new PVector(200, 50),
+    "button",
+    "Demon",
+    "changeto_demon"
+  ));
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 825, card.pos.y + 225 + 75*3),
+    new PVector(200, 50),
+    "button",
+    "Metrix",
+    "changeto_mech"
+  ));
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 825, card.pos.y + 225 + 75*4),
+    new PVector(200, 50),
+    "button",
+    "Misteria",
+    "changeto_mist"
+  ));
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 825, card.pos.y + 225 + 75*5),
+    new PVector(200, 50),
+    "button",
+    "Savage Lands",
+    "changeto_savage"
+  ));
+  inputs.add(new Input(
+    new PVector(card.pos.x + card.size.x + 825, card.pos.y + 225 + 75*6),
+    new PVector(200, 50),
+    "button",
+    "Solana",
+    "changeto_solana"
+  ));
 }
 
 
 public void draw()
 {  background(127);
-  // Draw Input Boxes
-
-
+  image(bgimg, 0, 0, width, height);
   // Draw Updated Card
   card.render();
+
+  // Draw Input Boxes
+  for (Input i : inputs) i.render();
 }
 
 // String Builder Vars
@@ -172,3 +409,44 @@ public PImage getImageFromValues(Card pC)
 
 }
 
+
+public void keyPressed()
+{
+  if (key == 8)       currentInput.keypress(0);
+  else if (key == 10) currentInput.keypress(1);
+  else if (key >= 32 && key <= 126)
+  {
+    if (currentInput.type == "textBox") currentInput.keypress(key);
+  }
+}
+
+public void mousePressed()
+{
+  int mX = mouseX, mY = mouseY;
+
+  Input clickedInput = null;
+
+  for (int x = inputs.size()-1; x >= 0; x--)
+  {
+    Input i = inputs.get(x);
+    if (mX >= i.pos.x && mX <= i.pos.x + i.size.x
+    &&  mY >= i.pos.y && mY <= i.pos.y + i.size.y)
+    {
+      if (i.greyed) continue;
+      else
+      {
+        clickedInput = i;
+        break;
+      }
+    }
+  }
+
+  if (clickedInput == null) return;
+  else
+  {
+    currentInput.selected = false;
+    if (clickedInput.type == "textBox") currentInput = clickedInput;
+    currentInput.selected = true;
+    clickedInput.onClick();
+  }
+}
