@@ -5,10 +5,10 @@ Currently requires [Processing](https://processing.org/download). to run,
 
 Eventuall everything will be changable in the application, however i have not yet developed that part of the app, (It takes a while lol).
 So To Change the current Card/Text, change the following variables in: "FAB_CCC_Card.pde":
-Title - Card name
-Text  - Text Box/Card Description
-Cost  - Cost of card
-Pitch - Pitch Value of Card (0, 1, 2, 3)
+- Title - Card name
+- Text  - Text Box/Card Description
+- Cost  - Cost of card
+- Pitch - Pitch Value of Card (0, 1, 2, 3)
 
 Attack Value  - atkv
 Defence Value - defv
