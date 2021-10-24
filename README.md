@@ -13,11 +13,11 @@ So To Change the current Card/Text, change the following variables in: "FAB_CCC_
 - Attack Value  - atkv
 - Defence Value - defv
 
-The tricky stuff comes to how to change the card background/frame.
-Theres alot of stuff going on behind the scenes with string building and image loactions, so please dont touch the main file if u dont want to break it <3
-To change the card type from "Action/Reaction" to "Hero" do the following: (also reverse)
-
-Change "Type" from "Action" to "Hero"
+The tricky stuff comes to how to change the card background/frame.  
+Theres alot of stuff going on behind the scenes with string building and image loactions, so please dont touch the main file if u dont want to break it <3  
+To change the card type from "Action/Reaction" to "Hero" do the following: (also reverse)  
+<br>
+Change "Type" from "Action" to "Hero"  
 Change the region to desired, Select From
 - Aria
 - Demon
@@ -28,11 +28,11 @@ Change the region to desired, Select From
 - Pits
 - Volcor
 
-Regarding classtype, This is what is displayed a the bottom center, along with actiontype, seperated by a "-",
-Changing this just changes the text at the bottom, so go crazy <3
-Ex. classtype = "Ninja Action" actiontype = "Attack".
-  - Displays: "Ninja Action - Attack"
-
-
+Regarding classtype, This is what is displayed a the bottom center, along with actiontype, seperated by a "-",  
+Changing this just changes the text at the bottom, so go crazy <3  
+Ex. classtype = "Ninja Action" actiontype = "Attack".  
+  - Displays: "Ninja Action - Attack"  
+<br>
+<br>
 Thank you for downloading and testing, any feedback would be appreciated.
 Eve <3
