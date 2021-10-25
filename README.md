@@ -1,41 +1,13 @@
 # FABCCC
 Flesh and Blood, Custom Card Creator.
 
-Currently requires [Processing](https://processing.org/download). to run,
-
-Eventuall everything will be changable in the application, however i have not yet developed that part of the app, (It takes a while lol).  
-So To Change the current Card/Text, change the following variables in: "FAB_CCC_Card.pde":
-- Title - Card name
-- Text  - Text Box/Card Description
-- Cost  - Cost of card
-- Pitch - Pitch Value of Card (0, 1, 2, 3)
-
-- Attack Value  - atkv
-- Defence Value - defv
-
-The tricky stuff comes to how to change the card background/frame.  
-Theres alot of stuff going on behind the scenes with string building and image loactions, so please dont touch the main file if u dont want to break it <3  
-To change the card type from "Action/Reaction" to "Hero" do the following: (also reverse)  
+Thank you for looking at my Custom Card Creator (CCC).  
 <br>
-Change "Type" from "Action" to "Hero"  
-Change the region to desired, Select From
-- Aria
-- Demon
-- Mech
-- Mist (Ninja)
-- Savage
-- SolanaS (Solana Special)
-- Pits
-- Volcor
-
-Regarding classtype, This is what is displayed a the bottom center, along with actiontype, seperated by a "-",  
-Changing this just changes the text at the bottom, so go crazy <3  
-Ex. classtype = "Ninja Action" actiontype = "Attack".  
-  - Displays: "Ninja Action - Attack"  
+Unfortunately, the way processing exports its sketches is a bit janky, so for the best experience, download [Processing](www.processing.org/download) here, and run it directly from the IDE.  
 <br>
-Finally, The background image or hero image.  
-to change this, find the "back" variable, (should be a image location within the same file.)  
-instead of my default "megumin.jpg", just replace it with your custom image file location, (Make sure your image is within the data folder provided).  
+Anyway, Usage of the App is simple, nothing is labled, but arent to hard to figure out what does what if you know the card layouts.  
 <br>
-Thank you for downloading and testing, any feedback would be appreciated.
+This app was made with Speed in mind... Have an idea? Open the app and throw it together ASAP so you dont forget.  
+Thanks for taking a look, Any feedback is appreciated.  
+<br>
 Eve <3
