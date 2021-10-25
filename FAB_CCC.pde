@@ -29,6 +29,7 @@ public void setup()
 
   // Setup Screen
   size(1600, 900); background(0);
+  // fullScreen();
 
   cardx = 450;
   cardy = 628;
