@@ -7,11 +7,12 @@ Thank you for looking at my Custom Card Creator (CCC).
 Unfortunately, the way processing exports its sketches is a bit janky, so for the best experience, download **Processing** At: www.processing.org/download, and run it directly from the IDE.  
 Follow these stepd for ease:
 1. Download Processing
-2. Ensure all files are in a folder called: "FAB_CCC"
-3. Open "FAB_CCC.pde"
-4. Click the Play button in the top left
-5. Enjoy
-6. Optional: Look at the code for cool points <3 :)
+2. Download FAB_CCC
+3. Ensure all files of "FAB_CCC" are in a folder specifically called: "FAB_CCC", (Processing will not open it otherwise)
+4. Open "FAB_CCC.pde"
+5. Click the Play button in the top left
+6. Enjoy
+7. Optional: Look at the code for cool points <3 :)
 <br>
 Anyway, Usage of the App is simple, nothing is labled, but arent to hard to figure out what does what if you know the card layouts.  
 <br>
